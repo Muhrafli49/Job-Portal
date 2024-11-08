@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('admin')->name('admin.')->group(function () {
-        
+
         Route::middleware('can: manage categories')->group(function () {
             Route::resource('categories', CategoryController::class);
         });
@@ -58,9 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('job_candidates', JobCandidateController::class);
             Route::get('/candidate/{job_candidate}/resume/download', [JobCandidateController::class, 'download_file'])->name('download_resume');
         });
-
     });
-    
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
