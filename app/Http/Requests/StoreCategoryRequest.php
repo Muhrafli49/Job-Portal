@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
@@ -25,7 +26,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             //
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:'.Category::class],
             'icon' => ['required', 'image', 'mimes:png, jpg, jpeg'],
         ];
     }
