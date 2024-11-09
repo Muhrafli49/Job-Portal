@@ -107,6 +107,7 @@ class CompanyJobController extends Controller
     public function show(CompanyJob $companyJob)
     {
         //
+        return view('admin.company_jobs.show', compact('companyJob'));
     }
 
     /**
