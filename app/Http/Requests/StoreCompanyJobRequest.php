@@ -24,7 +24,6 @@ class StoreCompanyJobRequest extends FormRequest
     public function rules() : array
     {
         return [
-            //
             'salary' => ['required', 'integer'],
             'company_id' => ['required', 'integer'],
             'category_id' => ['required', 'integer'],
@@ -32,9 +31,9 @@ class StoreCompanyJobRequest extends FormRequest
             'skill_level' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['required, image', 'mimes:png,jpg,jpeg'],
-            'responsibilities.*' => ['required|string|max:255'],
-            'qualifications.*' => ['required|string|max:255'],
+            'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'], 
+            'responsibilities.*' => ['required', 'string', 'max:255'], 
+            'qualifications.*' => ['required', 'string', 'max:255'], 
             'about' => ['required', 'string', 'max:65535'],
         ];
     }
