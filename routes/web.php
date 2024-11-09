@@ -42,22 +42,22 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->group(function () {
 
-        Route::middleware('can: manage categories')->group(function () {
+        Route::middleware('can:manage categories')->group(function () {
             Route::resource('categories', CategoryController::class);
         });
-
-        Route::middleware('can: manage company')->group(function () {
+        
+        Route::middleware('can:manage company')->group(function () {
             Route::resource('company', CompanyController::class);
         });
-
-        Route::middleware('can: manage jobs')->group(function () {
+        
+        Route::middleware('can:manage jobs')->group(function () {
             Route::resource('company_jobs', CompanyJobController::class);
         });
-
-        Route::middleware('can: manage applicants')->group(function () {
+        
+        Route::middleware('can:manage applicants')->group(function () {
             Route::resource('job_candidates', JobCandidateController::class);
             Route::get('/candidate/{job_candidate}/resume/download', [JobCandidateController::class, 'download_file'])->name('download_resume');
-        });
+        });        
     });
 });
 
