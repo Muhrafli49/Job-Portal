@@ -17,7 +17,7 @@
             @forelse ($company_jobs as $job )
                 <div class="item-card flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
-                        <img src="{{ Storage::url($job->company->thumbnail) }} " alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
+                        <img src="{{ Storage::url($job->thumbnail) }}" alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
                         <div class="flex flex-col">
                             <h3 class="text-indigo-950 text-xl font-bold">
                                 {{ $job->name }}
@@ -30,7 +30,7 @@
                     <div  class="hidden md:flex flex-col">
                         <p class="text-slate-500 text-sm">Salary</p>
                         <h3 class="text-indigo-950 text-xl font-bold">
-                            {{ number_format($job->salary). 0, ',', '.' }} /mo
+                            {{ number_format($job->salary, 0, ',', '.') }} /mo
                         </h3>
                     </div>
                     <div  class="hidden md:flex flex-col">

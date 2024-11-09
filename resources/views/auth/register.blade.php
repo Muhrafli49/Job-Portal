@@ -20,6 +20,7 @@
         <div class="mt-4">
             <x-input-label for="account_type" :value="__('account_type')" />
             <select name="account_type" class="w-full border border-slate-300 rounded-lg">
+                <option value="">Choose account type</option>
                 <option value="Employee">Employee</option>
                 <option value="Employer">Employer</option>
             </select>
