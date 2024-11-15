@@ -26,10 +26,9 @@ class CompanyJobController extends Controller
 
         $my_company = Company::where('employer_id', $user->id)->first();
 
-        if($my_company){
+        if ($my_company) {
             $company_jobs = CompanyJob::with(['category'])->where('company_id', $my_company->id)->paginate(10);
-        }
-        else {
+        } else {
             $company_jobs = collect();
         }
 
@@ -47,13 +46,13 @@ class CompanyJobController extends Controller
         $user = Auth::user();
 
         $my_company = Company::where('employer_id', $user->id)->first();
-        if(!$my_company){
-            return redirect()->route('admin.company.index');
+        if (!$my_company) {
+            return redirect()->route('admin.company.create');
         }
 
         $categories = Category::all();
 
-        return view ('admin.company_jobs.create', compact('categories', 'my_company'));
+        return view('admin.company_jobs.create', compact('categories', 'my_company'));
     }
 
     /**
@@ -68,7 +67,7 @@ class CompanyJobController extends Controller
         DB::transaction(function () use ($request) {
             $validated = $request->validated();
 
-            if($request->hasFile('thumbnail')){
+            if ($request->hasFile('thumbnail')) {
                 $thumbnailPath = $request->file('thumbnail')->store('thumbnails/' . date('Y/m/d'), 'public');
                 $validated['thumbnail'] = $thumbnailPath;
             }
@@ -78,18 +77,18 @@ class CompanyJobController extends Controller
 
             $newJob = CompanyJob::create($validated);
 
-            if(!empty($validated['responsibilities'])) {
+            if (!empty($validated['responsibilities'])) {
                 foreach ($validated['responsibilities'] as $responsibility) {
                     $newJob->responsibilities()->create([
-                        'name' => $responsibility
+                        'name' => $responsibility,
                     ]);
                 }
             }
 
-            if(!empty($validated['qualifications'])){
+            if (!empty($validated['qualifications'])) {
                 foreach ($validated['qualifications'] as $qualification) {
                     $newJob->qualifications()->create([
-                        'name' => $qualification
+                        'name' => $qualification,
                     ]);
                 }
             }

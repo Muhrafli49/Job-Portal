@@ -22,7 +22,6 @@ class CompanyController extends Controller
         //
         $user = Auth::user();
         
-
         $company = Company::with(['employer'])->where('employer_id', $user->id)->first();
 
         if(!$company){
@@ -119,6 +118,8 @@ class CompanyController extends Controller
             }
 
             $validated['slug'] = Str::slug($validated['name']);
+
+            $company->update($validated);
         });
 
         return redirect()->route('admin.company.index');

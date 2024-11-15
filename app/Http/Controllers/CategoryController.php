@@ -43,7 +43,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //
-        DB::transaction(function () use ($request) {
+        DB::transaction(function() use ($request) {
             $validated = $request->validated();
 
             if($request->hasFile('icon')){

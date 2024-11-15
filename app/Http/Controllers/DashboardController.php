@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
     public function my_applications_details(JobCandidate $jobCandidate){
         $user = Auth::user();
-        if($jobCandidate->candidate_id == $user->id){
+        if($jobCandidate->candidate_id != $user->id){
             abort(403);
         }
         return view('dashboard.my_applications_details', compact('jobCandidate'));
