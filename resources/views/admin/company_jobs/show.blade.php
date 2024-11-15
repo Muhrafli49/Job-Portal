@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
-                 
+
 
                 <div class="item-card flex flex-row gap-y-10 justify-between md:items-center">
                     <div class="flex flex-row items-center gap-x-3">
@@ -123,7 +123,7 @@
                         @endif
 
                         <div class="flex flex-row items-center gap-x-3">
-                            <a href="{{ route('admin.candidates.show', $candidate) }} " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            <a href="{{ route('admin.job_candidates.show', $candidate) }} " class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                                 Details
                             </a>
                         </div>
