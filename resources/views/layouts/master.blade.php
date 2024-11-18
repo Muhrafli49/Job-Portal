@@ -13,7 +13,7 @@
 
     @yield('content')
 
-    @stack('before-script')
+    @stack('before-scripts')
 
-    @stack('after-script')
+    @stack('after-scripts')
 </html>
