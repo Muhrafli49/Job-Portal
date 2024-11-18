@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/details/{company_jobs:slug}', [HomeController::class, 'details'])->name('home.details');
+Route::get('/details/{company_job:slug}', [HomeController::class, 'details'])->name('home.details');
+Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('home.category');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::middleware('can:apply job')->group(function () {
+        Route::get('/apply/success', [HomeController::class, 'success_apply'])->name('home.apply.success');
+
+        Route::get('/apply/{company_job:slug}', [HomeController::class, 'apply'])->name('home.apply');
+        Route::post('/apply/{company_job:slug}/submit', [HomeController::class, 'apply_store'])->name('home.apply.store');
+    });
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         
