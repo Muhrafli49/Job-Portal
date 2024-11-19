@@ -22,6 +22,6 @@ class DashboardController extends Controller
         if($jobCandidate->candidate_id != $user->id){
             abort(403);
         }
-        return view('dashboard.my_applications_details', compact('jobCandidate'));
+        return view('dashboard.my_application_details', compact('jobCandidate'));
     }
 }
