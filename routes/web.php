@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
-        
+
         Route::middleware('can:apply job')->group(function () {
             Route::get('my-applications', [DashboardController::class, 'my_applications'])->name('my.applications');
-            Route::get('my-applications/{job_candidate}', [DashboardController::class, 'my_application_details'])->name('my.application.details');
+            Route::get('my-applications/{job_candidate}', [DashboardController::class, 'my_applications_details'])->name('my.application.details');
         });
     });
 
@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('company_jobs', CompanyJobController::class);
         });
 
-        Route::middleware('can:manage applicants')->group(function () {
+        Route::middleware('can:manage candidates')->group(function () {
             Route::resource('job_candidates', JobCandidateController::class);
             Route::get('/candidate/{job_candidate}/resume/download', [JobCandidateController::class, 'download_file'])->name('download_resume');
         });
