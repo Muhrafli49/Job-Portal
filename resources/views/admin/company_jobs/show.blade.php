@@ -103,7 +103,7 @@
                                     {{ $candidate->profile->name }}
                                 </h3>
                                 <p class="text-slate-500 text-sm">
-                                    {{ $candidate->profile->job_occupation }} - {{ $candidate->profile->experience }} yrs exp
+                                    {{ $candidate->profile->occupation }} - {{ $candidate->profile->experience }} yrs exp
                                 </p>
                             </div>
                         </div>
