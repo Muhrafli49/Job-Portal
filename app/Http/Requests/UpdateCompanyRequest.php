@@ -13,7 +13,8 @@ class UpdateCompanyRequest extends FormRequest
      */
     public function authorize() : bool
     {
-        return true;
+        $company = $this->route('company');
+        return $company && $this->user()->can('update', $company);
     }
 
     /**
