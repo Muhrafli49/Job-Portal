@@ -5,45 +5,7 @@
         <div id="page-background" class="absolute h-[1330px] w-full top-0 -z-10 overflow-hidden">
             <img src="assets/backgrounds/Group 2009.png" class="w-full h-full object-fill" alt="background">
         </div>
-        <nav class="container max-w-[1130px] mx-auto flex items-center justify-between pt-10">
-            <a href="index.html" class="flex shrink-0">
-                <img src="assets/logos/Logo.svg" alt="Logo">
-            </a>
-            <ul class="flex items-center gap-10">
-                <li>
-                    <a href="index.html" class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-semibold text-[#FF6B2C]">Home</a>
-                </li>
-                <li>
-                    <a href="index.html" class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Features</a>
-                </li>
-                <li>
-                    <a href="index.html" class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Benefits</a>
-                </li>
-                <li>
-                    <a href="index.html" class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">Stories</a>
-                </li>
-                <li>
-                    <a href="index.html" class="transition-all duration-300 hover:font-semibold hover:text-[#FF6B2C] font-medium text-white">About</a>
-                </li>
-            </ul>
-            @guest
-            <div class="flex items-center gap-3">
-                <a href="{{ route('login') }}" class="rounded-full border border-white p-[14px_24px] font-semibold text-white">Sign In</a>
-                <a href="{{ route('register') }}" class="rounded-full p-[14px_24px] bg-[#FF6B2C] font-semibold text-white hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Sign up</a>
-            </div>
-            @endguest
-
-            @auth
-            <div class="flex items-center gap-4">
-                <p class="username font-medium text-white">Hi, {{ Auth::user()->name }}</p>
-                <div class="w-[52px] h-[52px] flex shrink-0 rounded-full overflow-hidden">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ Storage::url(Auth::user()->avatar) }}" class="object-cover w-full h-full" alt="photo">
-                    </a>
-                </div>
-            </div>
-            @endauth
-        </nav>
+        <x-nav/>
         <header class="container max-w-[1130px] mx-auto flex items-center justify-between gap-[50px] mt-[70px]">
             <div class="flex flex-col justify-center w-full gap-10">
                 <div class="badge flex items-center rounded-full py-2 pl-4 pr-6 gap-[10px] bg-white w-fit">
@@ -56,12 +18,13 @@
                     <h1 class="font-black text-[60px] leading-[70px] text-white">We Help You<br>Get Dream Job</h1>
                     <p class="text-lg leading-[34px] text-white">Must trusted platform to build new career and<br>get an happy job better than befooore</p>
                 </div>
-                <form action="search.html" class="flex items-center bg-white rounded-full pl-6 h-fit focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                <form method="GET" action="{{ route('home.search') }}" class="flex items-center bg-white rounded-full pl-6 h-fit focus-within:ring-2 focus-within:ring-[#FF6B2C] transition-all duration-300">
+                    @csrf
                     <div class="flex items-center w-full mr-6 gap-[10px]">
                         <div class="flex shrink-0">
                             <img src="assets/icons/search-normal.svg" alt="icon">
                         </div>
-                        <input type="text" autocomplete="off" class="appearance-none w-full outline-none font-semibold placeholder:font-normal placeholder:text-[#0E0140] focus:outline-none" placeholder="Quick search your dream job...">
+                        <input name="keyword" type="text" autocomplete="off" class="appearance-none w-full outline-none font-semibold placeholder:font-normal placeholder:text-[#0E0140] focus:outline-none" placeholder="Quick search your dream job...">
                     </div>
                     <button type="submit" class="rounded-full py-5 px-[30px] bg-[#FF6B2C] font-semibold text-white text-nowrap hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">Explore Now</button>
                 </form>
@@ -90,7 +53,7 @@
                     </div>
                 </a>
                 @empty
-                    
+                    <p>No categories</p>
                 @endforelse
             </div>
         </section>
