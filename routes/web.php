@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/details/{company_job:slug}', [HomeController::class, 'details'])->name('home.details');
 Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('home.category');
+Route::get('/search/jobs/', [HomeController::class, 'search'])->name('home.search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
