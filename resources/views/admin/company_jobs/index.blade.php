@@ -57,6 +57,7 @@
                 </p>
             @endforelse
                 
+        {{ $company_jobs->links() }}
 
             </div>
         </div>
