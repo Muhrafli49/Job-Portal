@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,7 @@ use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      *
@@ -96,6 +98,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
         //
+        $this->authorize('edit', $company);
         return view('admin.company.edit', compact('company'));
     }
 
